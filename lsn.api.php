@@ -2,26 +2,49 @@
 
 /**
  * Limestone Client API
+ * https://rw.limestonenetworks.com/administrative/api.html
+ * https://rw.limestonenetworks.com/administrative/api/documentation.html
  */
 
 class LSN
 {
 
   public $url		= "https://one.limestonenetworks.com/webservices/clientapi.php?";
-  public $version	= '1.0';
+  public $version	= '1.01';
   public $api_key	= '';
 
   public $module;
   public $action;
 
   /* Blind functions */
-  public function __construct() { return TRUE; }
-  public function get_balance()	  { return $this->APIQuery('billing', 'getbalance', 		'GET', FALSE); }
-  public function unpaid()		  { return $this->APIQuery('billing', 'unpaid', 		'GET', FALSE); }
-  public function sources()		  { return $this->APIQuery('billing', 'sources', 		'GET', FALSE); }
-  public function getprobtypes()	  { return $this->APIQuery('support', 'getprobtypes', 		'GET', FALSE); }
-  public function getOperatingSystems() { return $this->APIQuery('servers', 'getOperatingSystems', 	'GET', FALSE); }
-  public function phishingstatus()	  { return $this->APIQuery('servers', 'phishingstatus', 	'GET', FALSE); }
+  public function __construct()
+  {
+    return TRUE;
+  }
+  public function get_balance()
+  {
+    return $this->APIQuery('billing', 'getbalance',	'GET', FALSE);
+  }
+  public function unpaid()
+  {
+    return $this->APIQuery('billing', 'unpaid',	'GET', FALSE);
+  }
+  public function sources()
+  {
+    return $this->APIQuery('billing', 'sources', 'GET', FALSE);
+  }
+  public function getprobtypes()
+  {
+    return $this->APIQuery('support', 'getprobtypes', 'GET', FALSE);
+  }
+  public function getOperatingSystems()
+  {
+    return $this->APIQuery('servers', 'getOperatingSystems', 'GET', FALSE);
+  }
+  public function phishingstatus()
+  {
+    return $this->APIQuery('servers', 'phishingstatus', 'GET', FALSE);
+  }
 
 
   /* Functions with optional arguments */
@@ -40,9 +63,7 @@ class LSN
     if (isset($server_id) || $server_id !== FALSE) $filter['server_id'] = $server_id;
     if (isset($network)   || $network !== FALSE)   $filter['network']   = $network;
     if (isset($type) || $type !== FALSE)           $filter['type']      = $type;
-
     $ips = $this->APIQuery('ipaddresses', 'list', 'GET', (sizeof($filter) ? $filter : FALSE) );
-
     return $ips;
   }
 
@@ -171,12 +192,10 @@ class LSN
 
     $this->module = $module;
     $this->action = $action;
-
     $apiurl = $this->url .
               "key="     . $this->api_key .
               "&mod="    . $module .
               "&action=" . $action;
-
     if ($method == 'GET' && $args !== FALSE) $apiurl .= "&" . http_build_query($args);
 
     /* Initialize cURL Session */
