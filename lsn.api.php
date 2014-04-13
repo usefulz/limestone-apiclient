@@ -23,11 +23,9 @@ class LSN
   public $module;
   public $action;
 
-  public function __construct($api_key, $url = null)
+  public function __construct($api_key)
   {
-	if (empty($api_key)) throw new Exception('OnePortal API Key must be provided.');
-    if (empty($url)) $url = 'https://one.limestonenetworks.com/webservices/clientapi.php';
-    $this->url = $url . '?';
+    if (empty($api_key)) throw new Exception('OnePortal API Key must be provided.');
     $this->api_key = $api_key;
     return true;
   }
