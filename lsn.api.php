@@ -7,12 +7,6 @@
  * @author https://github.com/usefulz
  * @prereq cURL, cURLSSL, SimpleXML
  */
-
-require_once 'lsn.tickets.php';
-require_once 'lsn.servers.php';
-require_once 'lsn.billing.php';
-require_once 'lsn.dns.php';
-require_once 'lsn.users.php';
  
 class LSN
 {
@@ -88,4 +82,10 @@ class LSN
     return $final;
   }
 }
+
+require_once 'lsn.tickets.php';
+require_once 'lsn.servers.php';
+require_once 'lsn.billing.php';
+require_once 'lsn.dns.php';
+require_once 'lsn.users.php';
 ?>
